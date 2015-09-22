@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title> spaza </title>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<style type='text/css'>
+		body{
+			background:lightgrey;
+			padding:10% 20%;
+			color:tomato;
+			font-family: 'Sans';
+			text-shadow:1px 1px black;
+		}
+		.product{
+			padding:10% 20%;
+			background:tomato;
+			color:black;
+			border:1px solid black;
+		}
+		.newsale{
+			border:3px solid blue;
+			border-radius:100px;
+			background:skyblue;
+			width:20%;
+			padding:3%;
+		}
+		.newsale:hover{
+			transform:scale(1.1);
+			transition:transform 1s;
+			cursor: pointer;
+		}
+		}
+	</style>
+
+	</head>
+
+	<body ng-app="spazaApp">
+
+		<div  ng-controller='backend' class='col-md-6'>
+
+			<h1> {{spaza_name}} Spazashop Management</h1>
+			<hr>
+			<h2> Sales this week </h4>
+			
+			<h4>  Units Sold :  {{units}}        </h4>
+			<h4>  Profits :     {{profits | currency:'R'}}      </h4>
+			<h4>  Highest Sale :{{highest_sale }} </h4>
+			<h4>  Lowest Sale : {{lowest_sale }}  </h4>
+			<h1>Products Sold this week</h1>
+			<div ng-repeat='product in products' style='color:black;' class='product'>
+				<p>{{product.name}}</p>
+				<p>{{product.price}}</p>
+				<p>{{product.units}}
+				<p ng-click='newSale($index)' class='newsale'>+newSale</p>
+			</div>
+
+		</div>
+
+	<script type='text/javascript' src='app.js'></script>
+    <script type='text/javascript' src='backend.js'></script>
+	</body>
+</html>
