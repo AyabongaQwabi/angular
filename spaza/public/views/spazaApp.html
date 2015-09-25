@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title> spaza </title>
+
+		<style type='text/css'>
+			body{
+				background:lightgrey;
+				padding:10% 20%;
+				color:black;
+				font-family: 'Sans';
+				text-shadow:1px 1px black;
+			}
+			.productnames{
+				background:black;
+				color:white;
+				padding:1%;
+				text-align: center;
+				width:50%;
+				display: inline-block;
+				border:1px solid white;
+			}
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}
+			.ng-disabled{color:red;}
+			.col-xs-12{
+				margin-top:0.5%;
+			}
+		</style>
+
+	</head>
+
+	<body ng-app="spaza" ng-init="serviceUK=true;edit=false">
+		<div ng-controller="Store">
+
+		<h1> {{store.storename | uppercase}} </h1>
+
+		<h5> <span style="padding:1%;background:black;color:orange;border-radius:10px;">{{store.email}}</span></h5>
+		
+
+		<hr>
+			<a href='#/products'><button type='button' class='btn btn-warning col-xs-12'>PRODUCTS </button></a>
+			<a href='#/sales'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>SALES </button></a>
+			<a href='#/purchases'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>PURCHASES</button></a>
+			<a href='#/employees'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>EMPLOYEES</button></a>
+
+		
+
+
+		
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+			
+
+	<script type='text/javascript' src='views/spazaApp.js'></script>
+  
+	</body>
+</html>

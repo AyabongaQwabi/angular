@@ -1,0 +1,81 @@
+<head>
+		<title> spaza </title>
+
+		<style type='text/css'>
+			body{
+				background:lightgrey;
+				padding:10% 20%;
+				color:black;
+				font-family: 'Sans';
+				text-shadow:1px 1px black;
+			}
+			.productnames{
+				background:black;
+				color:white;
+				padding:1%;
+				text-align: center;
+				width:50%;
+				display: inline-block;
+				border:1px solid white;
+			}
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}
+			.ng-disabled{color:red;}
+			#editor{
+				padding:5%;
+				background:orange;
+				text-align:left;
+			}
+		</style>
+
+	</head>
+<div  ng-init="addProduct=false;addProductButton=true">
+			<a href='#/dashboard'><button type='button' class='btn btn-warning col-xs-12'>Back to Dashboard </button></a>
+			<button class='btn btn-warning col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add New Product</button>
+			<div ng-show='addProduct' id='editor'>
+				<h4> Add product </h4>
+				name<br>
+				<input ng-model='pname'><br>
+				weight<br>
+				<input ng-model='pweight'><br>
+				price<br>
+				<input ng-model='pprice'><br>
+				<button type='button' class='btn btn-warning' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add</button>
+			</div>
+
+			<hr>
+            <br>
+		
+
+			<h3> Products in store </h3>
+			    <div id='editor' ng-show='edit'>
+						<h4> Edit Product</h4> 
+						<h5> Product </h5>
+						<br><input ng-model='epname' class='col-xs-12'>
+						<h5> Category </h5>
+						<br><input ng-model='epweight' class='col-xs-12'>
+						<h5> Price</h5>
+						 <br><input ng-model='epprice' class='col-xs-12'>
+						<button class="btn" ng-click="save()">save</button>
+				</div>
+				<div ng-repeat='product in products' class="productnames">
+					<h4> {{product.name}} </h4>
+					<h5> {{product.category}} </h5>
+
+					<button class="btn btn-warning" ng-click="loadEditor(product)">
+	          			<span class="glyphicon glyphicon-pencil"></span>Edit
+	          		</button>
+					
+				</div>
+				
+			<hr>
+</div>

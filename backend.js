@@ -1,4 +1,4 @@
-app.controller('backend',['$scope',function($scope,$filter){
+spazaApp.controller('backend',['$scope',function($scope,$filter){
 
 								
 

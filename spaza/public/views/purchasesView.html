@@ -1,0 +1,77 @@
+<head>
+		<title> spaza </title>
+
+		<style type='text/css'>
+			body{
+				background:lightgrey;
+				padding:10% 20%;
+				color:black;
+				font-family: 'Sans';
+				text-shadow:1px 1px black;
+			}
+			.productnames{
+				background:black;
+				color:white;
+				padding:1%;
+				text-align: center;
+				width:100%;
+				display: inline-block;
+				border:1px solid white;
+			}
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}
+			.ng-disabled{color:red;}
+		</style>
+
+	</head>
+<div  ng-init="addProduct=false;addProductButton=true">
+			<a href='#/dashboard'><button type='button' class='btn btn-warning col-xs-12'>Back to Dashboard </button></a>
+			<button class='btn btn-warning col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add New Purchase</button>
+			<div ng-show='addProduct'>
+				<h4> Add product </h4>
+				name<br>
+				<input ng-model='pname'><br>
+				weight<br>
+				<input ng-model='pweight'><br>
+				price<br>
+				<input ng-model='pprice'><br>
+				<button type='button' class='btn btn-warning' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add</button>
+			</div>
+
+			<hr>
+            <br>
+		
+
+			<h3> Stock Purchases </h3>
+
+				<div ng-repeat='purchase in purchases' class="productnames">
+				    <p class='col-xs-12' style='color:orange;'>[ {{purchase.date}} ]</p>
+				    	
+					<td class='col-xs-12'>Bought {{purchase.product}} </td>							
+					<td class='col-xs-12'>{{purchase.price | currency:'R'}} </td>
+					<td class='col-xs-12'> From {{purchase.supplier}} </td>
+				
+
+					<td><button class="btn btn-warning" ng-click="loadEditor(product)">
+	          			<span class="glyphicon glyphicon-trash"></span>delete
+	          		</button></td>
+					<div ng-show='edit' style='border:2px solid red;background:orangered;text-align:left;'>
+						Edit field <br>
+						Product &nbsp<input ng-model='epname'><br>
+						Category <input ng-model='epweight'><br>
+						Price &nbsp<input ng-model='epprice'><br>
+						<button class="btn" ng-click="save()">save</button>
+				</div>
+				</div>
+				
+			<hr>
+		</div>

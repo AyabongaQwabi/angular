@@ -1,0 +1,27 @@
+
+		<a href='#/dashboard'><button type='button' class='btn btn-warning'>Back to Dashboard </button></a>
+		<button class='btn btn-warning' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add Employee</button>
+
+		<h3> Employees </h3>
+				<span ng-if="serviceUK" style='color:red'>*no more services in UK*</span><br>
+				<span ng-if="!serviceUK" style='color:green'>*enabled services in UK*</span><br>
+				<span ng-show="!serviceUK"> Note : The United Kindgdom varies in laws regarding fruit selling</span><br>
+				no UK services <input type='checkbox' ng-model='serviceUK'>
+
+						<table style="width:100%;">
+							<th> # </th>
+							<th> Name </th>
+							<th> Country </th>
+						<tbody>
+						<tr ng-repeat="emp in employees | orderBy: 'Name'">
+						   <td ng-if='$odd' style='background:tomato'> {{$index+1}}</td>
+						   <td ng-if='$even' style='background:skyblue;'> {{$index+1}}</td>
+							
+							<td ng-if="emp.Country=='UK'"><button  ng-disabled='serviceUK' class='ng-disabled'>{{emp.Name}}</button> </td>
+							<td ng-if="emp.Country!='UK'"><button>{{emp.Name}}</button></td>
+							<td> {{emp.Country}}</td>
+
+						</tr>
+						</tbody>
+						</table>
+					
