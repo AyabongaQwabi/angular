@@ -33,6 +33,7 @@ app.config(['$routeProvider',function($routeProvider) {
         }]);
 
 app.controller('Store',['$scope','$location','$http',function($scope,$location,$http){
+
                 $scope.store;
                 
                 $http.get("http://172.18.0.108:8080/ang/users/demo")
@@ -44,10 +45,50 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     });
                 
 
-               
+                $scope.getSupplierList=function(){
+                    
+                        var listElem = angular.element('#supplierList')
+                        listElem.html('')
+
+                        var html="<li>"+
+                                    "<a >"+
+                                        "<span class='badge'><span class='glyphicon glyphicon-asterisk'>  "+   
+                                        "</span> new </span>"+
+                                    "</a>"+
+                                  "</li>";
+
+                        for(i=0;i<5;i++){
+                            html +=('<li><a>Supplier '+i+'</a></li>')
+                        }
+
+                        listElem.html(html)
+               }
+
+                $scope.getCategoryList=function(){
+                    
+                        var listElem = angular.element('#categoryList')
+                        listElem.html('')
+
+                        var html="<li>"+
+                                    "<a >"+
+                                        "<span class='badge'><span class='glyphicon glyphicon-asterisk'>  "+   
+                                        "</span> new </span>"+
+                                    "</a>"+
+                                  "</li>";
+
+                        for(i=0;i<5;i++){
+                            html +=('<li><a>category '+i+'</a></li>')
+                        }
+
+                        listElem.html(html)
+               }
                 
                 
-                $scope.fruits=[{id:1,name:'banana',weight:'1kg',price:10},{id:2,name:'apple',weight:'2kg',price:11}]
+                $scope.fruits=[
+                                {id:1,name:'banana',weight:'1kg',price:10},
+                                {id:2,name:'apple',weight:'2kg',price:11}
+                              ]
+
                 $scope.storename = 'Mamba Veg'
                 $scope.city = 'Cape Town';
                 $scope.launchDate = new Date('2015','06','12')
@@ -68,15 +109,31 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     var product ={id:$scope.fruits.length+1,name:$scope.pname,weight:$scope.pweight,price:$scope.pprice}
                     $scope.add(product)
                 }
+                
                 $scope.employees=[];
-                $http.get("http://www.w3schools.com/angular/customers.php").success(function(data){$scope.employees = data.records;})
+                $http.get("http://www.w3schools.com/angular/customers.php")
+                    .success(
+                         function(data){
+                            $scope.employees = data.records;})
+                
                 $scope.products;
-                $http.get('http://127.0.0.1:8080/products/all').success(function(data){$scope.products=data;})
+                $http.get('http://127.0.0.1:8080/products/all')
+                        .success(
+                            function(data){
+                                $scope.products=data;})
                 //console.log($scope.products)
+                
                 $scope.sales;
-                $http.get('http://127.0.0.1:8080/ang/users/demo/sales').success(function(data){$scope.sales=data;})
+                $http.get('http://127.0.0.1:8080/ang/users/demo/sales')
+                        .success(
+                            function(data){                                
+                                $scope.sales=data;})
+
                 $scope.purchases;
-                $http.get('http://127.0.0.1:8080/ang/users/demo/purchases').success(function(data){$scope.purchases=data;})
+                $http.get('http://127.0.0.1:8080/ang/users/demo/purchases')
+                        .success(
+                            function(data){
+                                $scope.purchases=data;})
 
 
                 $scope.epname='';

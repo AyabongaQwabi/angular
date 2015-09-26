@@ -1,0 +1,42 @@
+			body{ 
+
+				background:lightgrey;
+				padding:5% 10%;
+				color:black;
+				font-family: 'Sans';
+			
+
+			}
+			.dropdown{
+				z-index:10000;
+			}
+			
+			.dropdown-menu{
+				z-index:100000;
+			}
+			table, th , td {
+
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+
+			}
+			table tr:nth-child(odd) {
+
+			  background-color: #f1f1f1;
+
+			}
+			table tr:nth-child(even) {
+
+			  background-color: #ffffff;
+
+			}
+
+			.ng-disabled{color:red;}
+
+			#editor{
+
+				padding:5%;
+				background:orange;
+				text-align:left;
+			}

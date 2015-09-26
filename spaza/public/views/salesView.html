@@ -1,54 +1,61 @@
-<head>
-		<title> spaza </title>
-
-		<style type='text/css'>
-			body{
-				background:lightgrey;
-				padding:10% 20%;
-				color:black;
-				font-family: 'Sans';
-				text-shadow:1px 1px black;
-			}
-			.productnames{
-				background:black;
-				color:white;
-				padding:1%;
-				text-align: center;
-				width:100%;
-				display: inline-block;
-				border:1px solid white;
-			}
-			.productnames td:first-of-type{
-				background-color: orange;
-			}
-			table, th , td {
-			  border: 1px solid grey;
-			  border-collapse: collapse;
-			  padding: 5px;
-			}
-			table tr:nth-child(odd) {
-			  background-color: #f1f1f1;
-			}
-			table tr:nth-child(even) {
-			  background-color: #ffffff;
-			}
-			.ng-disabled{color:red;}
-			
-		</style>
-
-	</head>
+<link rel='stylesheet' type='text/css' href='files/css/salesView.css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <div  ng-init="addProduct=false;addProductButton=true">
-			<a href='#/dashboard'><button type='button' class='btn btn-warning col-xs-12'>Back to Dashboard </button></a>
+			<a href='#/dashboard'><button type='button' class='btn btn-warning col-xs-12'><span class="glyphicon glyphicon-circle-arrow-left" ></span>  &nbsp Back to Dashboard </button></a>
+
 			<button class='btn btn-warning col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add New Sale</button>
-			<div ng-show='addProduct'>
+
+			<button class='btn btn-primary col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'><span class="glyphicon glyphicon-barcode"></span> &nbspScan New Sale</button>
+
+			<div class="input-group col-xs-12">
+
+  					<span class="input-group-addon glyphicon glyphicon-search" style='displ'></span>
+  					<input type="text" class="form-control" placeholder="find sale" aria-describedby="basic-addon1">
+
+			</div>
+
+
+
+			<div ng-show='addProduct' class='col-xs-12' id='editor'>
 				<h4> Add Sale </h4>
 				Product<br>
-				<input ng-model='pname'><br>
-				Date<br>
-				<input ng-model='pweight'><br>
+				<input ng-model='pname' class='form-control col-xs-12'><br>
 				Quantity<br>
-				<input ng-model='pprice'><br>
-				<button type='button' class='btn btn-warning' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add</button>
+				<input ng-model='pprice' class='form-control col-xs-12'><br>
+				
+				Date<br>
+				
+				<div class="container col-xs-12">
+			    <div class="" style="height:130px;">
+			        <div class="form-group">
+			            <div class='input-group date col-xs-12' id='datetimepicker9'>
+			                <input type='text' class="form-control" />
+			                <span class="input-group-addon">
+			                    <span class="glyphicon glyphicon-calendar">
+			                    </span>
+			                </span>
+			            </div>
+			        </div>
+			        <div class="input-group ">
+
+	  					<span class="input-group-addon glyphicon glyphicon-shopping-cart" style='displ'>&nbsp TOTAL </span>
+	  					
+
+					</div>
+
+			    </div>
+			    <script type="text/javascript">
+			        $(function () {
+			            $('#datetimepicker9').datetimepicker({
+			                viewMode: 'years'
+			            });
+			        });
+			    </script>
+			</div>
+
+			<button type='button' class='btn btn-primary col-xs-12' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add</button>
+				
 			</div>
 
 			<hr>
@@ -70,9 +77,9 @@
 	          		</button></td>
 					<div ng-show='edit' style='border:2px solid red;background:orangered;text-align:left;'>
 						Edit field <br>
-						Product &nbsp<input ng-model='epname'><br>
-						Category <input ng-model='epweight'><br>
-						Price &nbsp<input ng-model='epprice'><br>
+						Product &nbsp<input ng-model='epname' class='col-xs-12'><br>
+						Category <input ng-model='epweight' class='col-xs-12'><br>
+						Price &nbsp<input ng-model='epprice' class='col-xs-12'><br>
 						<button class="btn" ng-click="save()">save</button>
 				</div>
 				</div>

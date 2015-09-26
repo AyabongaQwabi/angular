@@ -1,61 +1,68 @@
 <html>
 	<head>
-		<title> spaza </title>
-
-		<style type='text/css'>
-			body{
-				background:lightgrey;
-				padding:10% 20%;
-				color:black;
-				font-family: 'Sans';
-				text-shadow:1px 1px black;
-			}
-			.productnames{
-				background:black;
-				color:white;
-				padding:1%;
-				text-align: center;
-				width:50%;
-				display: inline-block;
-				border:1px solid white;
-			}
-			table, th , td {
-			  border: 1px solid grey;
-			  border-collapse: collapse;
-			  padding: 5px;
-			}
-			table tr:nth-child(odd) {
-			  background-color: #f1f1f1;
-			}
-			table tr:nth-child(even) {
-			  background-color: #ffffff;
-			}
-			.ng-disabled{color:red;}
-			.col-xs-12{
-				margin-top:0.5%;
-			}
-		</style>
-
+		<link rel='stylesheet' type='text/css' href='files/css/spazaApp.css'>
 	</head>
 
 	<body ng-app="spaza" ng-init="serviceUK=true;edit=false">
+		
 		<div ng-controller="Store">
 
-		<h1> {{store.storename | uppercase}} </h1>
-
-		<h5> <span style="padding:1%;background:black;color:orange;border-radius:10px;">{{store.email}}</span></h5>
-		
-
-		<hr>
-			<a href='#/products'><button type='button' class='btn btn-warning col-xs-12'>PRODUCTS </button></a>
-			<a href='#/sales'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>SALES </button></a>
-			<a href='#/purchases'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>PURCHASES</button></a>
-			<a href='#/employees'><button type='button' ng-click='' class='btn btn-warning col-xs-12'>EMPLOYEES</button></a>
-
-		
-
+			<h1> {{store.storename | uppercase}} </h1>
+			
+			<h5> 
+				<span style="padding:1%;background:black;color:orange;border-radius:10px;">{{store.email}}</span>
+			</h5>
+			
+			<h5> Spazashop Manager {{store.username}} </h5>
+			
+			<h7> 
+				<small>Brought to you by CodeX</small>
+			</h7>
 
 		
+		
+
+			<hr>
+			<a href='#/products'>
+				<button type='button' class='btn btn-warning col-xs-12'>
+					<span class="glyphicon glyphicon-list"></span>&nbsp PRODUCTS 
+					<span class="badge">{{products.length}}</span> 
+				</button>
+			</a>
+
+			<a href='#/sales'>
+			   <button type='button' ng-click='' class='btn btn-warning col-xs-12'>
+			      <span class="glyphicon glyphicon-align-right"></span> &nbspSALES
+			      <span class="badge">{{sales.length}}</span>
+			    </button>
+			</a>
+
+			<a href='#/purchases'>
+			    <button type='button' ng-click='' class='btn btn-warning col-xs-12'>
+			    	<span class="glyphicon glyphicon-list-alt"></span>&nbsp PURCHASES <span class="badge">{{purchases.length}}</span>
+			    </button>
+			</a>
+
+			<a href='#/employees'>
+				<button type='button' ng-click='' class='btn btn-warning col-xs-12'>
+					<span class="glyphicon glyphicon-user"></span>&nbsp EMPLOYEES
+					<span class="badge">{{employees.length}}</span>
+				</button>
+			</a>
+			
+	        <a href='#/'>
+	        	<button class='btn btn-primary col-xs-12'  ng-click="create=!create"> Reports</button>
+	        </a>
+	        
+	        <a href='#/'>
+	        	<button class='btn btn-danger col-xs-12'  ng-click="create=!create"> Logout</button>
+	        </a>
+
+    </div>
+		
+
+
+		
 
 
 
@@ -66,7 +73,7 @@
 
 
 
-		</div>
+	
 
 			
 

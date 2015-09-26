@@ -28,7 +28,7 @@ app.controller('spazaCtrl',['$scope','$http','$location','$anchorScroll',functio
 			$scope.createStore = function(){
 					console.log('Create() initiated')
 					var data = {username:$scope.newusername,storename:$scope.newstorename,email:$scope.newemail,password:$scope.newpassword}
-					$http.post('http://172.18.0.108:8080/ang/users/add',data).then(function(response){
+					$http.post('http://127.0.0.1:8080/ang/users/add',data).then(function(response){
 						console.log(response+ ' < - >Done posting');
 					})
 					$scope.next =true;

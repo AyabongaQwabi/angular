@@ -1,0 +1,52 @@
+		
+
+
+
+			body{
+					background:lightgrey;
+					padding:10% 20%;
+					color:black;
+					font-family: 'Sans';
+				
+			}
+
+			.productnames{
+
+					background:black;
+					color:white;
+					padding:1%;
+					text-align: center;
+					width:50%;
+					display: inline-block;
+					border:1px solid white;
+
+			}
+
+			table, th , td {
+
+				    border: 1px solid grey;
+				    border-collapse: collapse;
+				    padding: 5px;
+
+			}
+
+			table tr:nth-child(odd) {
+
+				    background-color: #f1f1f1;
+
+			}
+			table tr:nth-child(even) {
+
+			  		background-color: #ffffff;
+
+			}
+
+			.ng-disabled{
+
+					color:red;
+			}
+			.col-xs-12{
+
+					margin-top:0.5%;
+					
+			}
