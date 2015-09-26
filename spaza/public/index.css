@@ -7,7 +7,7 @@
 
     .main{
 
-        background:orange;
+        background:url('../img/orbslur.jpg');
         padding:10%;
         text-align: center;
         box-shadow: 1px 1px 10px 1px black;
@@ -25,7 +25,10 @@
         transition: all 1s;
 
     }
-
+    #loginBtn{
+        background:white;
+        color:black;
+    }
     .col-xs-12{
 
         margin-top:1%;
