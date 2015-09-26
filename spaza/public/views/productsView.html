@@ -1,0 +1,113 @@
+<head>
+	<link rel='stylesheet' type='text/css' href='files/css/productsView.css'>
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<div  ng-init="category='--category --';supplier='-- supplier --';addProduct=false;addProductButton=true">
+
+
+			<a href='#/dashboard'>
+				<button type='button' class='btn btn-warning col-xs-12'>
+					<span class="glyphicon glyphicon-circle-arrow-left" ></span>  &nbsp Back to Dashboard 
+				</button>
+			</a>
+
+			
+			<button class='btn btn-warning col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add New Product</button>
+
+
+			<button class='btn btn-primary col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>
+				<span class="glyphicon glyphicon-barcode"></span>&nbspScan New Product
+			</button>
+
+
+			 <div class="input-group col-xs-12">
+
+  					<span class="input-group-addon glyphicon glyphicon-search" style='displ'></span>
+  					<input type="text" class="form-control" placeholder="find product" aria-describedby="basic-addon1">
+
+			</div>
+
+
+
+			<div ng-show='addProduct' class='col-xs-12' id='editor'>
+
+					<h4> Add Product </h4>
+							<hr>
+							Product Namee<br>
+							<input ng-model='pname' class='form-control col-xs-12'><br>
+							Selling Price<br>
+							<input ng-model='pprice' class='form-control col-xs-12'><br>
+							<br>
+							Product ID
+							<input ng-model='pid' ng-disabled='true' class='form-control col-xs-12'><br>
+					
+							<br>Supplier
+							<div class="dropdown" ng-click='getSupplierList();'>
+							  	<button class="btn btn-primary dropdown-toggle col-xs-12" type="button" data-toggle="dropdown">{{supplier}}
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu col-xs-12" id='supplierList' >
+							    
+							    <li>
+							    	<a >
+							    		<span class='badge'><span class='glyphicon glyphicon-asterisk'>		
+							    		</span> new </span>
+							    	</a>
+							    </li>
+							   
+							     
+							  </ul>
+							</div>
+
+							<br>Category
+							<div class="dropdown" ng-click='getCategoryList();'>
+							  	<button class="btn btn-primary dropdown-toggle col-xs-12" type="button" data-toggle="dropdown">{{category}}
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu col-xs-12" id='supplierList' >
+							     <li>
+							    	<a >
+							    		<span class='badge'><span class='glyphicon glyphicon-asterisk'>		
+							    		</span> new </span>
+							    	</a>
+							    </li>
+							  </ul>
+							</div>
+				<button type='button' class='btn btn-primary col-xs-12' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add
+				</button>
+
+			</div>
+
+			<hr>
+            <br>
+		
+
+			<h3> Products in store </h3>
+
+			    <div id='editor' ng-show='edit'>
+						<h4> Edit Product</h4> 
+						<h5> Product </h5>
+						<br><input ng-model='epname' class='col-xs-12'>
+						<h5> Category </h5>
+						<br><input ng-model='epweight' class='col-xs-12'>
+						<h5> Price</h5>
+						 <br><input ng-model='epprice' class='col-xs-12'>
+						<button class="btn" ng-click="save()">save</button>
+				</div>
+
+				<div ng-repeat='product in products' class="productnames">
+				
+					<h4> {{product.name}} </h4>
+					<h5> {{product.category}} </h5>
+
+					<button class="btn btn-warning" ng-click="loadEditor(product)">
+	          			<span class="glyphicon glyphicon-pencil"></span>Edit
+	          		</button>
+	          		<button class="btn btn-warning" ng-click="loadEditor(product)">
+	          			<span class="glyphicon glyphicon-trash"></span>delete
+	          		</button>
+					
+				</div>
+				
+			<hr>
+</div>

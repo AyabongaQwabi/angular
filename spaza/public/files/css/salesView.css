@@ -1,0 +1,36 @@
+body{
+				background:lightgrey;
+				padding:5% 10%;
+				color:black;
+				font-family: 'Sans';
+				text-shadow:1px 1px black;
+			}
+			.productnames{
+				background:black;
+				color:white;
+				padding:1%;
+				text-align: center;
+				width:100%;
+				display: inline-block;
+				border:1px solid white;
+			}
+			.productnames td:first-of-type{
+				background-color: orange;
+			}
+			table, th , td {
+			  border: 1px solid grey;
+			  border-collapse: collapse;
+			  padding: 5px;
+			}
+			table tr:nth-child(odd) {
+			  background-color: #f1f1f1;
+			}
+			table tr:nth-child(even) {
+			  background-color: #ffffff;
+			}
+			.ng-disabled{color:red;}
+			#editor{
+				padding:5%;
+				background:orange;
+				text-align:left;
+			}

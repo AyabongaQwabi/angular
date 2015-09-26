@@ -1,0 +1,99 @@
+<link rel='stylesheet' type='text/css' href='files/css/purchasesView.css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<div  ng-init="addProduct=false;addProductButton=true">
+			<a href='#/dashboard'><button type='button' class='btn btn-warning col-xs-12'><span class="glyphicon glyphicon-circle-arrow-left" ></span>  &nbsp Back to Dashboard </button></a>
+
+			<button class='btn btn-warning col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add New Purchase</button>
+			<button class='btn btn-primary col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>Add Supplier</button>
+			<button class='btn btn-primary col-xs-12' ng-show='addProductButton' ng-click='addProduct=!addProduct;addProductButton=!addProductButton'>View Suppliers</button>
+			<div class="input-group col-xs-12">
+
+  					<span class="input-group-addon glyphicon glyphicon-search" style='displ'></span>
+  					<input type="text" class="form-control" placeholder="find purchase" aria-describedby="basic-addon1">
+
+			</div>
+
+
+			<div ng-show='addProduct' id='editor' class='col-xs-12'>
+				<h4> Add Purchase </h4>
+				Product<br>
+				<input ng-model='pname' class='col-xs-12 form-control'><br>
+				Quantity<br>
+				<input ng-model='pweight' class='col-xs-12 form-control'><br>
+				
+
+				<br>Supplier
+							<div class="dropdown" ng-click='getSupplierList();'>
+							  	<button class="btn btn-primary dropdown-toggle col-xs-12" type="button" data-toggle="dropdown">{{supplier}}
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu col-xs-12" id='supplierList' >
+							    
+							    <li>
+							    	<a >
+							    		<span class='badge'><span class='glyphicon glyphicon-asterisk'>		
+							    		</span> new </span>
+							    	</a>
+							    </li>
+							   
+							     
+							  </ul>
+							</div>
+
+				Date<br>
+			    <div class="container col-xs-12">
+			    <div class="" style="height:130px;">
+			        <div class="form-group">
+			            <div class='input-group date col-xs-12' id='datetimepicker9'>
+			                <input type='text' class="form-control" />
+			                <span class="input-group-addon">
+			                    <span class="glyphicon glyphicon-calendar">
+			                    </span>
+			                </span>
+			            </div>
+			        </div>
+			    </div>
+			    <script type="text/javascript">
+			        $(function () {
+			            $('#datetimepicker9').datetimepicker({
+			                viewMode: 'years'
+			            });
+			        });
+			    </script>
+			</div>
+		
+
+
+
+				<button type='button' id='addPurBtn' class='btn btn-primary col-xs-12' ng-click='addProduct=!addProduct;addProductButton=!addProductButton;addProduct()'>Add</button>
+			</div>
+
+			<hr>
+            <br>
+		
+
+			<h3> Stock Purchases </h3>
+
+				<div ng-repeat='purchase in purchases' class="productnames">
+				    <p class='col-xs-12' style='color:orange;'>[ {{purchase.date}} ]</p>
+				    	
+					<td class='col-xs-12'>Bought {{purchase.product}} </td>							
+					<td class='col-xs-12'>{{purchase.price | currency:'R'}} </td>
+					<td class='col-xs-12'> From {{purchase.supplier}} </td>
+				
+
+					<td><button class="btn btn-warning" ng-click="loadEditor(product)">
+	          			<span class="glyphicon glyphicon-trash"></span>delete
+	          		</button></td>
+					<div ng-show='edit' style='border:2px solid red;background:orangered;text-align:left;'>
+						Edit field <br>
+						Product &nbsp<input ng-model='epname' class='col-xs-12'><br>
+						Category <input ng-model='epweight' class='col-xs-12'><br>
+						Price &nbsp<input ng-model='epprice' class='col-xs-12'><br>
+						<button class="btn" ng-click="save()">save</button>
+				</div>
+				</div>
+				
+			<hr>
+		</div>

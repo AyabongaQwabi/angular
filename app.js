@@ -1,6 +1,6 @@
-var app = angular.module('spazaApp',[])
+var spazaApp = angular.module('spazaApp',[])
 
-app.directive('ngProducts',function(){
+spazaApp.directive('ngProducts',function(){
 
 		return {
 			restrict:'E',
@@ -12,10 +12,3 @@ app.directive('ngProducts',function(){
 		}
 });
 
-app.directive('ngSparkline', function() {
-  return {
-    restrict: 'A',
-    require: '^ngModel',
-    template: '<div class="sparkline"><h4>Weather for {{ngModel}}</h4></div>'
-  }
-});

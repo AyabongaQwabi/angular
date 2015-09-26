@@ -1,0 +1,93 @@
+<link rel='stylesheet' type='text/css' href='files/css/employeesView.css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<div ng-init="empLevel='Employee Level';addEmployee='false';addEmployeeButton='true'">
+
+		<a href='#/dashboard'>
+			<button type='button' class='btn btn-warning col-xs-12'>
+			    <span class="glyphicon glyphicon-circle-arrow-left" ></span>  &nbsp Back to Dashboard 
+		    </button>
+	    </a>
+	    <div class="input-group col-xs-12">
+  			<span class="input-group-addon glyphicon glyphicon-search" style='displ'></span>
+  			<input type="text" class="form-control" placeholder="find employee" aria-describedby="basic-addon1">
+		</div>
+		<button class='btn btn-warning col-xs-12' ng-show='addEmployeeButton' ng-click='addEmployee=!addEmployee;addEmployeeButton=!addEmployeeButton'>Add New Employee</button>
+
+		<h3> Employees </h3>
+						
+						
+						<div ng-hide='addEmployee' id='editor'>
+
+							<h4> Add Employee </h4>
+							<hr>
+							Full Name<br>
+							<input ng-model='pname' class='form-control col-xs-12'><br>
+							ID Number<br>
+							<input ng-model='newEmpIdNumber' class='form-control col-xs-12'><br>
+							Employee ID<br>
+							<input ng-model='newEmpID' ng-disabled='true' class='form-control col-xs-12'><br>
+					
+							<br>
+							<div class="dropdown">
+							  	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{empLevel}}
+							  <span class="caret"></span></button>
+							  <ul class="dropdown-menu">
+							    <li><a ng-click="empLevel='Admin'">Admin</a></li>
+								<li><a ng-click="empLevel='Cashier'">Cashier</a></li>
+								<li><a ng-click="empLevel='Cleaner'">Cleaner</a></li>
+								<li><a ng-click="empLevel='Manager'">Manager</a></li>
+								<li><a ng-click="empLevel='Inventry'">Inventry</a></li>
+							  </ul>
+							</div>
+
+							
+							<button type='button' class='btn btn-warning' ng-click="addEmployee=!addEmployee;addEmployeeButton=!addEmployeeButton;">Add</button>
+
+						</div>
+
+						<table style="width:100%;background:white" class='table col-xs-12'>
+
+							
+							<th> Name </th>
+							
+							
+							<tbody>
+								<tr ng-repeat="emp in employees | orderBy: 'Name'">
+								   
+								   
+
+								   <td ng-if="$odd"  style='background:snowwhite'> {{emp.Name}}
+								   		<br>
+										<button class="btn btn-warning col-xs-12" ng-click="loadEditor(product)">
+				          					<span class="glyphicon glyphicon-pencil"></span>&nbsp Edit
+				          				</button>
+
+				          				<button class="btn btn-danger col-xs-12" ng-click="loadEditor(product)">
+				          					<span class="glyphicon glyphicon-trash"></span> &nbsp Delete
+				          				</button>
+
+								   </td>
+
+							
+
+								   <td ng-if="$even"  style='background:white;'> {{emp.Name}}
+								   		<br>
+									    <button class="btn btn-warning col-xs-12" ng-click="loadEditor(product)">
+				          					<span class="glyphicon glyphicon-pencil"></span> &nbsp Edit
+				          				</button>
+
+				          				<button class="btn btn-danger col-xs-12" ng-click="loadEditor(product)">
+				          					<span class="glyphicon glyphicon-trash"></span> &nbsp Delete
+				          				</button>
+
+								   </td>						
+								   
+						
+
+								</tr>
+							</tbody>
+						</table>
+					
