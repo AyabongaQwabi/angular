@@ -81,6 +81,9 @@ myConnection = require('express-myconnection');
                  var connection = mysql.createConnection(dbOptions2)
                     connection.query('select * from user where id=4',function(err,results){
                         res.send(results)
+                        console.log('Request demo')
+                        console.log('results'+JSON.stringify(results))
+                        console.log('ERR'+err)
                     })
             })
             app.post('/ang/users/add',function(req,res){
