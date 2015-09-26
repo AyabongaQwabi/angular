@@ -36,7 +36,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
 
                 $scope.store;
                 
-                $http.get("http://188.166.65.135/:5000/ang/users/demo")
+                $http.get("http://188.166.65.135:5000/ang/users/demo")
                     .success(function(data){
                        $scope.store=data[0];
                        console.log($scope.store)
@@ -51,20 +51,20 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                             $scope.employees = data.records;})
                 
                 $scope.products;
-                $http.get('http://188.166.65.135/:5000/ang/users/demo/products/all')
+                $http.get('http://188.166.65.135:5000/ang/users/demo/products/all')
                         .success(
                             function(data){
                                 $scope.products=data;})
                 //console.log($scope.products)
                 
                 $scope.sales;
-                $http.get('http://188.166.65.135/:5000/ang/users/demo/sales')
+                $http.get('http://188.166.65.135:5000/ang/users/demo/sales')
                         .success(
                             function(data){                                
                                 $scope.sales=data;})
 
                 $scope.purchases;
-                $http.get('http://188.166.65.135/:5000/ang/users/demo/purchases')
+                $http.get('http://188.166.65.135:5000/ang/users/demo/purchases')
                         .success(
                             function(data){
                                 $scope.purchases=data;})
