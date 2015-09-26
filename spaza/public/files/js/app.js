@@ -36,14 +36,39 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
 
                 $scope.store;
                 
-                $http.get("http://172.18.0.108:8080/ang/users/demo")
+                $http.get("http://188.166.65.135/:5000/ang/users/demo")
                     .success(function(data){
                        $scope.store=data[0];
                        console.log($scope.store)
                         console.log(data)
                         console.log('done')
                     });
+
+                $scope.employees=[];
+                $http.get("http://www.w3schools.com/angular/customers.php")
+                    .success(
+                         function(data){
+                            $scope.employees = data.records;})
                 
+                $scope.products;
+                $http.get('http://188.166.65.135/:5000/ang/users/demo/products/all')
+                        .success(
+                            function(data){
+                                $scope.products=data;})
+                //console.log($scope.products)
+                
+                $scope.sales;
+                $http.get('http://188.166.65.135/:5000/ang/users/demo/sales')
+                        .success(
+                            function(data){                                
+                                $scope.sales=data;})
+
+                $scope.purchases;
+                $http.get('http://188.166.65.135/:5000/ang/users/demo/purchases')
+                        .success(
+                            function(data){
+                                $scope.purchases=data;})
+
 
                 $scope.getSupplierList=function(){
                     
@@ -110,40 +135,27 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.add(product)
                 }
                 
-                $scope.employees=[];
-                $http.get("http://www.w3schools.com/angular/customers.php")
-                    .success(
-                         function(data){
-                            $scope.employees = data.records;})
                 
-                $scope.products;
-                $http.get('http://127.0.0.1:8080/products/all')
-                        .success(
-                            function(data){
-                                $scope.products=data;})
-                //console.log($scope.products)
-                
-                $scope.sales;
-                $http.get('http://127.0.0.1:8080/ang/users/demo/sales')
-                        .success(
-                            function(data){                                
-                                $scope.sales=data;})
-
-                $scope.purchases;
-                $http.get('http://127.0.0.1:8080/ang/users/demo/purchases')
-                        .success(
-                            function(data){
-                                $scope.purchases=data;})
-
 
                 $scope.epname='';
                 $scope.epweight=0;
                 $scope.epprice=0;
                 $scope.inedit=0;
-
+                $scope.closeEditor = function(){
+                     $scope.edit = !$scope.edit;
+                     $scope.epname='';
+                    $scope.epweight=0;
+                    $scope.epprice=0;
+                    $scope.inedit=0;
+                }
                 $scope.loadEditor = function(fruit){
-                    //console.log('FRUIT:'+fruit)
-                    $scope.edit = !$scope.edit;
+                    if($scope.epname!=fruit.name && $scope.epname!=''){
+                          $scope.edit = $scope.edit;
+                    }
+                    else{
+                            $scope.edit = !$scope.edit;
+                    }
+                
                     $scope.epname =fruit.name;
                     $scope.epweight=fruit.weight;
                     $scope.epprice =fruit.price;
