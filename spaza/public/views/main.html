@@ -4,36 +4,36 @@
 		    <br>
 		    <h4> {{main.brief }} </h4> 
 
-		    <a href='#/dashboard' ng-click='loadCreate()'>
+		    <a href='#/login' ng-click='loadCreate()'>
 
-		        <button class='btn btn-warning'  > Spaza Login </button>
+		        <button class='btn btn-warning col-xs-12'  > Spaza Login </button>
 		        
 		    </a>
-		    
+		    <button class='btn  col-xs-12'  ng-click="create=!create"> create store</button>
 		</div>
 
-		<button class='btn btn-warning col-xs-12'  ng-click="create=!create"> create store</button>
+		
 
   
         <div class='col-xs-12 register' ng-show='create'  id='registration'>
 
-	            <h2> Create your store {{create}} </h2>
+	            <h2> Create your store </h2>
 
 	            <form>
 		                <br>
 		                <h4> Store name </h4>
-		                <input type='text' class='col-xs-12' ng-model='newstorename' name='storename'>
+		                <input type='text' class='form-control col-xs-12' ng-model='newstorename' name='storename'>
 		                <h4> Username </h4>
-		                <input type='text' class='col-xs-12' ng-model='newusername' name='username'>
+		                <input type='text' class='form-control col-xs-12' ng-model='newusername' name='username'>
 		                <h4> Password</h4>
-		                <input type='text' class='col-xs-12's ng-model='newpassword' name='password'>
+		                <input type='text' class='form-control col-xs-12's ng-model='newpassword' name='password'>
 		                <h4> Email </h4>
-		                <input type='text' class='col-xs-12' ng-model='newemail' name='email'>
+		                <input type='text' class='form-control col-xs-12' ng-model='newemail' name='email'>
 		                <br>
 		                <br>
 
 		                <button class='btn btn-primary' type='button' ng-click='createStore()'> Create </button>
-		                <button class='btn btn-warning' type='button' ng-show='next'> Next </button>
+		                <button class='btn btn-warning' type='button' ng-show='next' ng-click='next()'> Next </button>
 	            </form>
 
         </div>

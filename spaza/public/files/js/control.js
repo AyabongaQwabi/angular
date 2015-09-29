@@ -22,14 +22,25 @@ app.controller('spazaCtrl',['$scope','$http','$location','$anchorScroll',functio
 				
 			}
 
+			$scope.createTables =function(data){
+				console.log('creating tables')
+				$http.post('http://localhost:5000/ang/users/add/init',data)
+					.then(function(response){
+						console.log('done')
 
+			         })
+			}
 			
 
 			$scope.createStore = function(){
 					console.log('Create() initiated')
 					var data = {username:$scope.newusername,storename:$scope.newstorename,email:$scope.newemail,password:$scope.newpassword}
-					$http.post('http://127.0.0.1:8080/ang/users/add',data).then(function(response){
+					console.log('Psoting new store')
+					console.log(data)
+					console.log('<---------->')
+					$http.post('http://localhost:5000/ang/users/add',data).success(function(response){
 						console.log(response+ ' < - >Done posting');
+						$scope.createTables(data);
 					})
 					$scope.next =true;
 			}
