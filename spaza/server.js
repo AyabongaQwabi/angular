@@ -2,13 +2,38 @@
 
 
             var express = require('express');
+            var products = require('./routes/products')
+            var sales = require('./routes/sales')
+            var purchases = require('./routes/purchases')
+            var users = require('./routes/users')
+            var employees = require('./routes/employees')
+            var suppliers = require('./routes/suppliers')
         
 //------------------ initialize objects ----------------------------------------------//
 
 
             var app = express();
      
+            var mysql = require('mysql');
+  
+  myConnection = require('express-myconnection');
+            //database = require('./database');
+            var dbOptions = {
+                host : "localhost",
+                user : "root",
+                password : "theaya5379",
+                port : 3306,
+                database : "Nelisa"
 
+            }
+              var dbOptions2 = {
+                host : "localhost",
+                user : "root",
+                password : "theaya5379",
+                port : 3306,
+                database : "spazas"
+
+            }
 
 
 
@@ -33,120 +58,46 @@
 				    // Pass to next layer of middleware
 				    next();
 	});
-
-
+	        var bodyParser = require('body-parser')
+			app.use(bodyParser.urlencoded({ extended: false }))
+            app.use(bodyParser.json())
+            app.use(myConnection(mysql, dbOptions, 'single'));
 
 //------------------  configure routes -----------------------------------------------//
-  var mysql = require('mysql');
-myConnection = require('express-myconnection');
-            //database = require('./database');
-            var dbOptions = {
-                host : "localhost",
-                user : "root",
-                password : "theaya5379",
-                port : 3306,
-                database : "Nelisa"
-
-            }
-              var dbOptions2 = {
-                host : "localhost",
-                user : "root",
-                password : "theaya5379",
-                port : 3306,
-                database : "spazas"
-
-            }
-
-            app.get('/ang/users/demo/products/all',function(req,res){
-            	   var connection = mysql.createConnection(dbOptions)
-	            	
-					connection.query('select products.name as name,categories.id as catid,categories.name as category,products.id as prodID from products,categories where products.category_id = categories.id ORDER BY  categories.id ASC', function(err,rows){
-						
-						res.send(rows);      
-					}); 
-		
-            })
-
-
-            app.get('/',function(req,res){
+  
+             app.get('/',function(req,res){
                     res.sendfile('public/index.html')
                 })
-           app.get('/ang/users/all',function(req,res){
-                 var connection = mysql.createConnection(dbOptions2)
-                    connection.query('select * from user',function(err,results){
-                        res.send(results)
-                    })
-            })
-             app.get('/ang/users/demo',function(req,res){
-                 var connection = mysql.createConnection(dbOptions2)
-                    connection.query('select * from user where id=4',function(err,results){
-                        res.send(results)
-                        console.log('Request demo')
-                        console.log('results'+JSON.stringify(results))
-                        console.log('ERR'+err)
-                    })
-            })
-            app.post('/ang/users/add',function(req,res){
-                
-                var connection = mysql.createConnection(dbOptions2)
-                var input = JSON.parse(JSON.stringify(req.body));
-                
-                var queryStr ='insert into user set ?'
-                console.log ('DATA:\n'+JSON.stringify(input))
-                connection.query(queryStr, input, function(err,results){
-                    res.send('Spaza Created!');
-                    console.log("-------ERR:"+err)
-                    console.log("-------results:"+results)
-                })
-            })
-            app.get('/ang/users/demo/purchases', function (req, res) {
-                
-                                var connection = mysql.createConnection(dbOptions)
-                                connection.connect();
-                                connection.query("SELECT DATE_FORMAT(purchases.date,'%d %b %y') as date, products.name as product, purchases.price, suppliers.name as supplier FROM purchases, products, suppliers WHERE products.id = purchases.product_id AND suppliers.id = purchases.supplier_id ORDER BY date",
-                                    function(err,results){
+
+            app.get('/ang/sales/:storename',sales.get)
+            app.get('/ang/sales/add/:storename',sales.add)
+            app.get('/ang/sales/delete/:storename/:id',sales.delete)
+
+            app.get('/ang/employees/:storename',employees.get)
+            app.get('/ang/employees/add/:storename',employees.add)
+            app.get('/ang/employees/delete/:storename/:id',employees.delete)
 
 
-                                res.send(results);
+            app.get('/ang/products/:storename',products.get)
+            app.get('/ang/products/categories/:storename',products.categories)
+            app.get('/ang/products/add/:storename',products.add)
+            app.get('/ang/products/delete/:storename/:id',products.delete)
 
-                                
-                            });
-                       
-               
-                
-            });
-            app.get('/ang/users/demo/categories', function (req, res) {
-                
-                                var connection = mysql.createConnection(dbOptions)
-                                connection.connect();
-                                connection.query("SELECT DATE_FORMAT(purchases.date,'%d %b %y') as date, products.name as product, purchases.price, suppliers.name as supplier FROM purchases, products, suppliers WHERE products.id = purchases.product_id AND suppliers.id = purchases.supplier_id ORDER BY date",
-                                    function(err,results){
+            app.get('/ang/users/all',users.all)
+            app.get('/ang/users/:id',users.get)
+            app.post('/ang/users/add',users.add)
+            app.post('/ang/users/add/init',users.init)
+            app.post('/ang/users/login',users.login)
 
+            app.get('/ang/purchases/:storename',purchases.get);
+            app.get('/ang/purchases/add/:storename',purchases.add);
+            app.get('/ang/purchases/delete/:storename',purchases.delete);
 
-                                res.send(results);
-
-                                
-                            });
-                       
-               
-                
-           });
-            app.get('/ang/users/demo/sales', function (req, res) {
-                
-                        var connection = mysql.createConnection(dbOptions)
-                        connection.connect();
-
-                        connection.query("select DATE_FORMAT(sales.date,'%d %b %y') as date, products.name, sales.quantity, sales.price,sales.product_id from sales,products where products.id = sales.product_id order by sales.date desc",
-
-                            function(err,results){
-                                    console.log('Client requests sales page : ' + err)   
-                            
-                                    res.send(results);
-                        });
-                       
-               
-                
-        });
+            app.get('/ang/suppliers/:storename',suppliers.get);
+            app.post('/ang/suppliers/add/:storename',suppliers.add);
+            app.post('/ang/suppliers/delete/:storename',suppliers.delete);
+            
+           
 app.listen(5000)
 
 

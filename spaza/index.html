@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>mySpaza</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="files/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="files/css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <!--
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style type='text/css'>
+    body{
+        padding:10% 10%;
+        background:white;
+    }
+    .main{
+        background:lightslategrey;
+        padding:10%;
+        text-align: center;
+        box-shadow: 1px 1px 10px 1px black;
+    }
+     .register{
+        background:lightsteelblue;
+        margin-top:10%;
+        padding:10%;
+        text-align: center;
+        box-shadow: 1px 1px 10px 1px black;
+        transition: all 1s;
+    }
+
+</style>
+</head>
+
+    <body ng-app='spaza' ng-controller='spazaCtrl'>
+        <div class='col-xs-12 main' id='headr' ng-init="create=false">
+            <h1> {{main.heading}} </h1>
+            <br>
+            <h4> {{main.brief }} </h4> <a href='#/route1'>next page</a>
+            <button class='btn btn-warming' ng-click='loadCreate()'> Create Store </button>
+            <button class='btn btn-warming' onclick='window.location.href'> Spaza Login </button>
+        </div>
+
+        <div ng-view>
+            
+            
+        </div>
+
+        <div class='col-xs-12 register' ng-show='create' id='registration'>
+
+            <h2> Create your store </h2>
+            <form>
+                <br>
+                <h4> Store name </h4>
+                <input type='text' ng-model='newstorename' name='storename'>
+                <h4> Username </h4>
+                <input type='text' ng-model='newusername' name='username'>
+                <h4> Password</h4>
+                <input type='text' ng-model='newpassword' name='password'>
+                <h4> Email </h4>
+                <input type='text' ng-model='newemail' name='email'>
+                <br>
+                <br>
+
+                <button class='btn btn-warming' type='button' ng-click='createStore()'> Create </button>
+                <button class='btn btn-warning' type='button' ng-show='next'> Next </button>
+            </form>
+
+        </div>
+
+    </body>
+    <script type='text/javascript' src='files/js/app.js'></script>
+    <script type='text/javascript' src='files/js/control.js'></script>
+</html>
