@@ -78,15 +78,28 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                         }
                     })
                 }
+                 $scope.editorCategory = function(id){
+                    //console.log('Selects category')
+                    $scope.getCategoryList();
+                    $scope.Categories.forEach(function(cat){
+                        if(cat['id']==id){
+                            $scope.editCategory = cat.name;
+                            $scope.editorSelectedCatID=id;
+                            console.log($scope.editorSelectedCat)
+                        }
+                    })
+                }
                 $scope.getCatID = function(name){                   
                     $scope.getCategoryList();
                     $scope.Categories.forEach(function(cat){
-                        if(cat['name'].toLowerCase() == name.toLowerCase()){
-                            return cat.id;
+                        console.log('cat.name:'+cat['name'].toLowerCase()+' '+'name:'+name.toLowerCase())
+                        console.log(cat['name'].toLowerCase().trim() == name.toLowerCase().trim())
+                        if(cat['name'].toLowerCase().trim() == name.toLowerCase().trim()){
+                            $scope.editorSelectedCatID = cat['id']
+                            console.log('MATHC')
+
                         }
-                        else{
-                            return;
-                        }
+                        
                     })
                 }
                 $scope.selectedSupplier = function(id){
@@ -259,6 +272,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.addSupBtn=true
                     $scope.category='select';
                     $scope.selectedCat;
+                    $scope.editorSelectedCat;
                     $scope.supplier='select';
                     $scope.getCategoryList();
                     $scope.getSupplierList();
@@ -294,7 +308,24 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.addProduct=!$scope.addProduct;
                     $scope.addProductButton=!$scope.addProductButton;
                     var product ={name:$scope.pname,price:$scope.pprice}
-                }                
+                }  
+                $scope.updateProduct = function(){
+                    console.log('editing')
+                   
+                    var data = {id:$scope.inedit,name:$scope.epname,price:$scope.epprice,categoryID: $scope.editorSelectedCatID}
+                    var request ="http://localhost:5000/ang/products/edit/:"+$scope.store.storename+'/:'+data.id
+                    $http.post(request,data)
+                    .success(
+                         function(data){
+                            
+                                 console.log('added \n'+JSON.stringify(data))
+                         }
+                    )
+                    .error(function(err){
+                        console.log('*ERR\t\t'+err)
+                    })
+                    
+                }              
                 $scope.addNewSupplier = function(){
                     $scope.addSupplier=!$scope.addSupplier;
                     $scope.addSupplierButton=!$scope.addSupplierButton;
@@ -345,29 +376,22 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.epprice=0;
                     $scope.inedit=0;
                 }
-                $scope.loadEditor = function(fruit){
-                    if($scope.epname!=fruit.name && $scope.epname!=''){
+                $scope.loadEditor = function(product){
+                    if($scope.epname!=product.name && $scope.epname!=''){
                           $scope.edit = $scope.edit;
                     }
                     else{
                             $scope.edit = !$scope.edit;
                     }
                 
-                    $scope.epname =fruit.name;
-                    $scope.epweight=fruit.weight;
-                    $scope.epprice =fruit.price;
-                    $scope.inedit=fruit.id;
+                    $scope.epname =product.name;
+                    $scope.editCategory=product.category;
+                    $scope.epprice =product.price;
+                    $scope.inedit=product.id;
+                    $scope.getCatID(product.category)
                    window.scrollTo(10,10);
                 }
-                $scope.save=function(){
-                    //console.log($scope.fruits)
-                    //console.log($scope.inedit)
-                    //console.log($scope.fruits[$scope.inedit])
-                    $scope.fruits[$scope.inedit-1]['name']=$scope.epname;
-                    $scope.fruits[$scope.inedit-1]['weight']=$scope.epweight;
-                    $scope.fruits[$scope.inedit-1]['price']=$scope.epprice;
-                    $scope.edit=!$scope.edit
-                }
+              
                
 }]);
 
