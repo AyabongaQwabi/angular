@@ -24,7 +24,7 @@ app.controller('spazaCtrl',['$scope','$http','$location','$anchorScroll',functio
 
 			$scope.createTables =function(data){
 				console.log('creating tables')
-				$http.post('http://localhost:5000/ang/users/add/init',data)
+				$http.post('http://ekasi.projectcodex.co:5000/ang/users/add/init',data)
 					.then(function(response){
 						console.log('done')
 
@@ -38,7 +38,7 @@ app.controller('spazaCtrl',['$scope','$http','$location','$anchorScroll',functio
 					console.log('Psoting new store')
 					console.log(data)
 					console.log('<---------->')
-					$http.post('http://localhost:5000/ang/users/add',data).success(function(response){
+					$http.post('http://ekasi.projectcodex.co:5000/ang/users/add',data).success(function(response){
 						console.log(response+ ' < - >Done posting');
 						$scope.createTables(data);
 					})
