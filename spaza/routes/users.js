@@ -117,13 +117,13 @@ exports.login = function(req,res,next){
                             var clientPassword =req.body.password;
 
                             var correctPassword = (hashedPassword==clientPassword)
-                            console.log('\nCOMPARING:\t'+result.username+" && "+req.body.username)
-                            console.log('PASS:\t'+result.password+" && "+req.body.password)
+                           // console.log('\nCOMPARING:\t'+result.username+" && "+req.body.username)
+                            //console.log('PASS:\t'+result.password+" && "+req.body.password)
                             if(result.username==req.body.username && correctPassword)
                             {                               
                                 Found=!Found;
                                 user=result;
-                                console.log(req.body.username+" is found")
+                                //console.log(req.body.username+" is found")
                                /* req.session.userEntryLevel = result.entry_level
                                 var usertype ='';
                                 if(req.session.userEntryLevel==1){
@@ -146,8 +146,8 @@ exports.login = function(req,res,next){
 						           }
 						           else{
 							           	res.send(results)
-							            console.log('Request USER details')
-							            console.log('results :\t\t'+JSON.stringify(results))
+							            console.log('\t\tLogged IN USER details')
+							            console.log('\t\tresults :\t\t'+JSON.stringify(results))
 						           }
 
 					        })

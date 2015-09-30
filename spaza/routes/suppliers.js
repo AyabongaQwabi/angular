@@ -3,8 +3,15 @@ var mysql = require('mysql');
 exports.get =function(req,res,next){
 	req.getConnection(function(err,connection){
 
-				  var connection = mysql.createConnection(dbOptions)
-                  connection.connect();
+				   var store = req.params.storename.substring(1);
+                   var connection = mysql.createConnection( {
+                                    host : "localhost",
+                                    user : "root",
+                                    password : "theaya5379",
+                                    port : 3306,
+                                    database : store
+
+                                })
                   connection.query("select * from supplier",
                       function(err,results){
 
