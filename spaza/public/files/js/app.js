@@ -117,7 +117,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                 
                 $scope.getProducts = function(){
                     console.log
-                    var prd_request ="http://localhost:5000/ang/products/:"+$scope.store.storename
+                    var prd_request ="http://ekasi.projectcodex.co:5000/ang/products/:"+$scope.store.storename
                     $http.get(prd_request)
                             .success(
                                 function(data){
@@ -126,21 +126,21 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                                     $scope.products=data;})
                 }
                 $scope.getEmployees= function(){
-                    var emp_request ="http://localhost:5000/ang/employees/:"+$scope.store.storename
+                    var emp_request ="http://ekasi.projectcodex.co:5000/ang/employees/:"+$scope.store.storename
                     $http.get(emp_request)
                         .success(
                              function(data){
                                 $scope.employees = data.records;})
                 }
                 $scope.getSales = function(){
-                    var sales_request ="http://localhost:5000/ang/sales/:"+$scope.store.storename
+                    var sales_request ="http://ekasi.projectcodex.co:5000/ang/sales/:"+$scope.store.storename
                     $http.get(sales_request)
                             .success(
                                 function(data){                                
                                     $scope.sales=data;})
                 }
                 $scope.getPurchases = function(){
-                    var pur_request ="http://localhost:5000/ang/purchases/:"+$scope.store.storename
+                    var pur_request ="http://ekasi.projectcodex.co:5000/ang/purchases/:"+$scope.store.storename
                     $http.get(pur_request)
                             .success(
                                 function(data){
@@ -157,7 +157,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                 $scope.login = function(){
                     var data = {username:$scope.loginUsername,password:$scope.loginPassword}
                     console.log('Login init')
-                    $http.post("http://localhost:5000/ang/users/login",data)
+                    $http.post("http://ekasi.projectcodex.co:5000/ang/users/login",data)
                     .success(function(data){
                        loggedInUser=data[0];
                        $scope.store=data[0];
@@ -178,7 +178,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                 $scope.getSupplierList=function(){
                     
                      //console.log('Fetching Suppliers')
-                     var req = "http://localhost:5000/ang/suppliers/:"+$scope.store.storename
+                     var req = "http://ekasi.projectcodex.co:5000/ang/suppliers/:"+$scope.store.storename
                      var data;
                      $http.get(req)
                           .success(
@@ -195,7 +195,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                 }
                 $scope.getCategoryList=function(){
                      console.log('Fetching Categories')
-                     var req = "http://localhost:5000/ang/products/categories/:"+$scope.store.storename
+                     var req = "http://ekasi.projectcodex.co:5000/ang/products/categories/:"+$scope.store.storename
                      var data;
                      $http.get(req)
                           .success(
@@ -225,7 +225,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.showCat=!$scope.showCat;
                 }
                 $scope.deleteProduct = function(id){
-                    var prd_request ="http://localhost:5000/ang/products/delete/:"+$scope.store.storename+'/:'+id
+                    var prd_request ="http://ekasi.projectcodex.co:5000/ang/products/delete/:"+$scope.store.storename+'/:'+id
                     $http.post(prd_request)
                             .success(
                                 function(data){
@@ -244,7 +244,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                                 categoryID:$scope.selectedCat.id
                     }
                     //console.log(data)
-                    var request ="http://localhost:5000/ang/products/add/:"+$scope.store.storename
+                    var request ="http://ekasi.projectcodex.co:5000/ang/products/add/:"+$scope.store.storename
                     $http.post(request,data)
                     .success(
                          function(data){
@@ -294,7 +294,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                 $scope.profits = 562.45
 
                 $scope.add = function(product){
-                    var request ="http://localhost:5000/ang/products/add/:"+$scope.store.storename
+                    var request ="http://ekasi.projectcodex.co:5000/ang/products/add/:"+$scope.store.storename
                     $http.post(request,product)
                     .success(
                          function(data){
@@ -313,7 +313,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     console.log('editing')
                    
                     var data = {id:$scope.inedit,name:$scope.epname,price:$scope.epprice,categoryID: $scope.editorSelectedCatID}
-                    var request ="http://localhost:5000/ang/products/edit/:"+$scope.store.storename+'/:'+data.id
+                    var request ="http://ekasi.projectcodex.co:5000/ang/products/edit/:"+$scope.store.storename+'/:'+data.id
                     $http.post(request,data)
                     .success(
                          function(data){
@@ -330,7 +330,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.addSupplier=!$scope.addSupplier;
                     $scope.addSupplierButton=!$scope.addSupplierButton;
                     var supplier = {name:$scope.supplierName};
-                     var request ="http://localhost:5000/ang/suppliers/add/:"+$scope.store.storename
+                     var request ="http://ekasi.projectcodex.co:5000/ang/suppliers/add/:"+$scope.store.storename
                     $http.post(request,supplier)
                     .success(
                          function(data){
@@ -346,7 +346,7 @@ app.controller('Store',['$scope','$location','$http',function($scope,$location,$
                     $scope.addCat=!$scope.addCat;
                     $scope.addCatButton=!$scope.addCatButton;
                     var cat = {name:$scope.catName};
-                     var request ="http://localhost:5000/ang/products/categories/add/:"+$scope.store.storename
+                     var request ="http://ekasi.projectcodex.co:5000/ang/products/categories/add/:"+$scope.store.storename
                     $http.post(request,cat)
                     .success(
                          function(data){
