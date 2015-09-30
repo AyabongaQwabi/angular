@@ -77,7 +77,7 @@ exports.add = function(req,res,next){
 
 exports.init = function(req,res,next){
 	req.getConnection(function(err,connection){
-
+        console.log('creation')
 		var input = JSON.parse(JSON.stringify(req.body));
         var cp = require("child_process");
 		var cmdLine = "mysql --user=root --password=theaya5379 "+input.storename+" < create-tables.sql";
