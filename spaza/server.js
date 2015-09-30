@@ -83,6 +83,7 @@
             app.post('/ang/products/categories/add/:storename',products.addCategory)
             app.post('/ang/products/add/:storename',products.add)
             app.post('/ang/products/delete/:storename/:id',products.delete)
+            app.post('/ang/products/edit/:storename/:id',products.update)
 
             app.get('/ang/users/all',users.all)
             app.get('/ang/users/:id',users.get)

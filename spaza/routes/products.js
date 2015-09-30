@@ -141,3 +141,34 @@ exports.categories =function(req,res,next){
 
     })
 }
+
+exports.update = function(req, res, next){
+        console.log("\n\n\n\n\t------UPDATING")
+        var data =req.body;
+        console.log("DATA :"+JSON.stringify(data))
+        var id = req.body.id;
+        console.log("############# ID:"+id)
+        req.getConnection(function(err, connection){
+            var store = req.params.storename.substring(1);
+            var connection = mysql.createConnection( {
+                                    host : "localhost",
+                                    user : "root",
+                                    password : "theaya5379",
+                                    port : 3306,
+                                    database : store
+
+                                })
+            connection.connect();
+            connection.query('UPDATE product SET ? WHERE id = ?', [data, id], function(err, rows){
+                if (err){
+                        console.log("Error Updating : %s ",err );
+                }
+                else{
+                    res.send('success');
+                    console.log('LOADED UPDATE '+JSON.stringify(data))
+                }
+                
+            });
+            
+    });
+};
