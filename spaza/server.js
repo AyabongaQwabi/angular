@@ -80,8 +80,9 @@
 
             app.get('/ang/products/:storename',products.get)
             app.get('/ang/products/categories/:storename',products.categories)
-            app.get('/ang/products/add/:storename',products.add)
-            app.get('/ang/products/delete/:storename/:id',products.delete)
+            app.post('/ang/products/categories/add/:storename',products.addCategory)
+            app.post('/ang/products/add/:storename',products.add)
+            app.post('/ang/products/delete/:storename/:id',products.delete)
 
             app.get('/ang/users/all',users.all)
             app.get('/ang/users/:id',users.get)

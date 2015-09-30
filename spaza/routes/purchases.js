@@ -42,7 +42,7 @@ exports.add =function(req,res,next){
                                     database : store
 
                                 })
-                    console.log('ADDING PURCAHSE ->\t\t'+JSON.stringify(req.body))
+                    console.log('****************ADDING PURCAHSE ->\t\t'+JSON.stringify(req.body))
                     connection.query('insert into purchase set ?',req.body, function(err,rows){
                         
                         if(err){
